@@ -1,11 +1,14 @@
 # CF_REFBUF
 
-> **Draft for review — text extraction only.** Figure rebuild did not pass, so this file is not a complete datasheet. Cypress/process leftovers may still be present. Do not treat this as a released spec.
+> **Draft for review.** Not a released spec. Figures are the original datasheet crops that passed branding review; any figure without a cached clearance was left out. Vendor wording may still be present in the text.
 
 - Vendor block: `s8refbuf`
 - Pages merged: 41/41
+- Figures published: 1/2
 - Skipped or invalid caches:
 - (none)
+- Figures not published:
+- `src-a770d3ad6ca76712-p0001-figure-0000` — page logo, header, footer, or marketing tagline
 
 ---
 
@@ -2183,7 +2186,12 @@ Iout at 1200mV output, vref=1V [src-a8a3c98ebe473a7e]
 
 ## Timing Diagram
 
-No source-backed figure of this type was present.
+### timing diagram for charging normal and heavy load
+
+![timing diagram for charging normal and heavy load](doc/generated/CF_REFBUF_timing_01.png)
+
+timing diagram for charging normal and heavy load [src-a770d3ad6ca76712:p14]
+
 
 ## Limitations and Open Issues
 
@@ -2258,6 +2266,7 @@ No source-backed figure of this type was present.
 Source markers identify immutable, hash-addressed operator evidence and page numbers. Original source filenames and vendor branding are intentionally not included in the customer package.
 
 - `src-a770d3ad6ca76712` page 2
+- `src-a770d3ad6ca76712` page 14
 - `src-a770d3ad6ca76712` page 16
 - `src-a770d3ad6ca76712` page n/a
 - `src-a8a3c98ebe473a7e` page 4
