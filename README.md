@@ -384,7 +384,12 @@ Use the files under `hdl/gl/` as blackbox declarations, `layout/lef/` for physic
 
 ## Block Diagram
 
-No source-backed figure of this type was present.
+### Figure not published (vendor branding)
+
+![Figure not published (vendor branding)](doc/generated/CF_REFBUF_withheld_01.svg)
+
+**Not published.** page logo, header, footer, or marketing tagline [src-a770d3ad6ca76712:p1]
+
 
 ## Pin Description
 
@@ -2193,6 +2198,13 @@ Iout at 1200mV output, vref=1V [src-a8a3c98ebe473a7e]
 timing diagram for charging normal and heavy load [src-a770d3ad6ca76712:p14]
 
 
+## Tables
+
+No source-backed figure of this type was present.
+
+## Withheld figures
+
+
 ## Limitations and Open Issues
 
 - Validated only for Industrial temperature range (-40 to 100C)
@@ -2265,6 +2277,7 @@ timing diagram for charging normal and heavy load [src-a770d3ad6ca76712:p14]
 
 Source markers identify immutable, hash-addressed operator evidence and page numbers. Original source filenames and vendor branding are intentionally not included in the customer package.
 
+- `src-a770d3ad6ca76712` page 1
 - `src-a770d3ad6ca76712` page 2
 - `src-a770d3ad6ca76712` page 14
 - `src-a770d3ad6ca76712` page 16
