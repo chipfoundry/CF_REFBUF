@@ -14,7 +14,7 @@ info:
   - CF_REFBUF
   bus: n/a
   type: hard
-  maturity: np
+  maturity: Production
   width: '123.225'
   height: '147.465'
   technology: sky130

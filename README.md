@@ -2,9 +2,8 @@
 
 > Precision Reference Buffer
 
-Draft for designer review. This package is not marked silicon-proven. The
-public GDS is an abstract; ChipFoundry substitutes protected full geometry at
-tapeout.
+Draft for designer review. The public GDS is an abstract; ChipFoundry
+substitutes protected full geometry at tapeout.
 
 This package ships four hard macros: `CF_REFBUF`, `CF_REFBUF_kryp`,
 `CF_REFBUF_gluelogic`, and `CF_REFBUF_gluelogic_kryp`. Place `CF_REFBUF` as
@@ -113,6 +112,10 @@ are present in a release.
 
 ## Tapeout History
 
-Not silicon proven in this ChipFoundry package version. Maturity is not
-proven until a shuttle returns. Foundry merge substitutes full geometry for
-the public abstract at tapeout.
+This hard macro has high-volume commercial production history (millions of
+units). Catalog and IPM maturity is Production.
+
+This ChipFoundry SkyWater 130 nm package delivers an abstract for
+integration. ChipFoundry substitutes protected full layout at tapeout.
+The ChipIgnite delivery of this package is not marked shuttle-proven until
+a run returns.
