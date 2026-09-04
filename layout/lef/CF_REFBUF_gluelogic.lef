@@ -23,7 +23,7 @@ MACRO CF_REFBUF_gluelogic
   END switchoff
   PIN vnb
     DIRECTION INPUT ;
-    USE SIGNAL ;
+    USE GROUND ;
     PORT
       LAYER met1 ;
         RECT 9.91 2.835 10.025 3.18 ;
@@ -31,7 +31,7 @@ MACRO CF_REFBUF_gluelogic
   END vnb
   PIN vgnd
     DIRECTION INPUT ;
-    USE SIGNAL ;
+    USE GROUND ;
     PORT
       LAYER met1 ;
         RECT 9.275 2.855 9.385 3.21 ;
@@ -39,7 +39,7 @@ MACRO CF_REFBUF_gluelogic
   END vgnd
   PIN vpb
     DIRECTION INPUT ;
-    USE SIGNAL ;
+    USE POWER ;
     PORT
       LAYER met1 ;
         RECT 13.385 7.48 13.56 7.815 ;
@@ -47,7 +47,7 @@ MACRO CF_REFBUF_gluelogic
   END vpb
   PIN vpwr
     DIRECTION INPUT ;
-    USE SIGNAL ;
+    USE POWER ;
     PORT
       LAYER met1 ;
         RECT 9.48 6.7 10.02 6.895 ;
@@ -55,7 +55,7 @@ MACRO CF_REFBUF_gluelogic
   END vpwr
   PIN vpbe
     DIRECTION INPUT ;
-    USE SIGNAL ;
+    USE POWER ;
     PORT
       LAYER met1 ;
         RECT 0.42 7.29 0.575 7.705 ;
@@ -63,7 +63,7 @@ MACRO CF_REFBUF_gluelogic
   END vpbe
   PIN vpwre
     DIRECTION INPUT ;
-    USE SIGNAL ;
+    USE POWER ;
     PORT
       LAYER met1 ;
         RECT 1.165 6.575 1.7 6.76 ;

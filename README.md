@@ -36,6 +36,13 @@ pip install cf-ipm
 ipm install CF_REFBUF --version 0.1.0 --include-drafts
 ```
 
+Until the marketplace listing is published, install from a local catalog
+override:
+
+```bash
+ipm install CF_REFBUF --version 0.1.0 --include-drafts --local-file ip/catalog.json
+```
+
 Use `hdl/gl/` as the blackbox, `layout/lef/` for P&R, and `layout/gds/` for the
 public abstract. Characterized Liberty for this abstract pinout is not in this
 package yet.
@@ -106,9 +113,25 @@ external supply about 1.65–5.5 V, reference 1.0 V or 1.2 V.
 
 ## Timing Diagram
 
-Timing diagrams are not synthesized from the stub. Enable, power-down, and
-output-switch polarity must match the blackbox and Liberty when those files
-are present in a release.
+With `PD` held low, raising `swon` charges the load toward `vref`. After
+`swon` falls, `out` tri-states and the load holds.
+
+The source figure labels the output-switch pin `switchon`; that net is `swon`
+on this abstract.
+
+![CF_REFBUF timing](doc/generated/CF_REFBUF_timing_01.png)
+
+## Limitations and Open Issues
+
+- Verilog in `hdl/gl/` is a behavioral blackbox, not a SPICE-accurate model.
+- Characterized Liberty for this abstract pinout is not shipped. Do not use
+  views whose pin names do not match `CF_REFBUF.lef`.
+- `boost`, load-feedback, and channel-select controls are on-chip, not pins
+  on this abstract.
+- Glue cells (`CF_REFBUF_gluelogic`, `CF_REFBUF_gluelogic_kryp`) are 8-pin
+  companions; they are not a substitute for the integration cell.
+- LEF supplies are `USE POWER` / `GROUND` (`vpwr`, `vpwre`, `vpb`, `vpbe`,
+  `ng` power; `vgnd`, `vnb` ground).
 
 ## Tapeout History
 
@@ -119,3 +142,7 @@ This ChipFoundry SkyWater 130 nm package delivers an abstract for
 integration. ChipFoundry substitutes protected full layout at tapeout.
 The chipIgnite delivery of this package is not marked shuttle-proven until
 a run returns.
+
+| Version | Date | Notes |
+|---|---|---|
+| 0.1.0 | 2026-09-04 | First unpublished IPM draft. Four public cells under `CF_REFBUF*` names. Pinout-only customer docs plus the charging timing figure. LEF supplies are `USE POWER`/`GROUND`. |
