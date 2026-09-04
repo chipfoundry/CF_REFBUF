@@ -1,0 +1,24 @@
+info:
+  name: CF_REFBUF
+  description: Precision Reference Buffer (CF_REFBUF) is a ChipFoundry hard-macro
+    blackbox on SkyWater 130 nm.
+  repo: https://github.com/chipfoundry/CF_REFBUF
+  owner: ChipFoundry
+  license: proprietary
+  author: ChipFoundry
+  email: support@chipfoundry.io
+  version: 0.1.0
+  date: 9-4-2026
+  category: digital
+  tags:
+  - CF_REFBUF
+  bus: n/a
+  type: hard
+  maturity: np
+  width: '123.225'
+  height: '147.465'
+  technology: sky130
+  digital_supply_voltage: n/a
+  analog_supply_voltage: n/a
+  clock_freq_mhz: n/a
+  cell_count: '4'
