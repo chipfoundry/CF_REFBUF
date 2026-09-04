@@ -1,17 +1,18 @@
 // Verilog HDL for "CF_REFBUF", "CF_REFBUF" "behavioral"
 // Blackbox stub for top-level integration. Analog behavior is not modeled.
-// Ports match public abstract MACRO CF_REFBUF.
+// Ports match public abstract MACRO CF_REFBUF and timing/lib/CF_REFBUF_*.lib.
 
 module CF_REFBUF (
     out,
-    bias_out,
     switchoff,
-    PD,
-    PDB,
-    swon,
-    hys_buf_bar,
+    pd,
+    switchon,
+    boost,
+    ch_cont,
+    ch1,
+    ch2,
+    ref_1v2,
     nbias,
-    ref1v2,
     ng,
     vpwr,
     vpwre,
@@ -21,14 +22,15 @@ module CF_REFBUF (
     vnb
 );
     output out;
-    output bias_out;
     output switchoff;
-    input PD;
-    input PDB;
-    input swon;
-    input hys_buf_bar;
+    input pd;
+    input switchon;
+    input boost;
+    input ch_cont;
+    input ch1;
+    input ch2;
+    input ref_1v2;
     input nbias;
-    input ref1v2;
     input ng;
     input vpwr;
     input vpwre;
@@ -37,8 +39,7 @@ module CF_REFBUF (
     input vpbe;
     input vnb;
 
-    assign out = ~PD & swon & vpwr;
-    assign bias_out = ~PD & vpwr;
+    assign out = ~pd & switchon & vpwr;
     assign switchoff = 1'b0;
 
 endmodule

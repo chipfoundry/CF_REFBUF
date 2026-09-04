@@ -1,0 +1,187 @@
+/* Run by mfy on Thu Nov 26 12:54:37 IST 2009  */ 
+library(CF_REFBUF_ss_1.65V_1.6V_-40C){
+     technology                   (cmos) ; 
+     delay_model                   : table_lookup ; 
+     voltage_unit                  : "1V" ;   
+     current_unit                  : "1mA" ;   
+     leakage_power_unit            : "1nW"  ;   
+     pulling_resistance_unit       : "1kohm" ;  
+     time_unit                     : "1ns"  ;   
+     capacitive_load_unit(1,pf) ;
+     bus_naming_style              : "%s[%d]" ;  
+     default_fanout_load           : 0.0  ;  
+     default_inout_pin_cap         : 0.0  ;  
+     default_input_pin_cap         : 0.0  ;  
+     default_output_pin_cap        : 0.0  ;  
+     input_threshold_pct_rise      : 50.0  ;  
+     input_threshold_pct_fall      : 50.0  ;  
+     output_threshold_pct_rise     : 50.0  ;  
+     output_threshold_pct_fall     : 50.0  ;  
+     slew_lower_threshold_pct_fall : 20.0  ;  
+     slew_lower_threshold_pct_rise : 20.0  ;  
+     slew_upper_threshold_pct_fall : 80.0  ;  
+     slew_upper_threshold_pct_rise : 80.0  ;  
+     voltage_map(vpwre, 1.65);
+     voltage_map(vpwr, 1.6);
+     voltage_map(vpbe, 1.65);
+     voltage_map(ng, 3.3);
+     voltage_map(vpb, 1.6);
+     voltage_map(vgnd, 0.0);
+     voltage_map(vnb, 0.0);
+
+     nom_process : 1.0 ;
+     nom_temperature : -40 ;
+     nom_voltage : 1.65;
+
+     define (always_on, pin, boolean); 
+     define (is_macro_cell, cell, boolean); 
+
+     operating_conditions(CF_REFBUF_ss_1.65V_1.6V_-40C) { 
+       process : 1 ;  
+       temperature : -40 ;   
+       voltage : 1.65 ;   
+       tree_type : balanced_tree 
+    } 
+    default_operating_conditions : CF_REFBUF_ss_1.65V_1.6V_-40C; 
+ 
+
+
+
+  cell(CF_REFBUF) {
+  is_macro_cell : true ;
+    leakage_power() {
+	when : "pd & !switchon";
+	value : 0.2862;
+	related_pg_pin : vpwr;
+  }
+    leakage_power() {
+	when : "pd & !switchon";
+	value : 0.39402;
+	related_pg_pin : vpwre;
+  }
+    area :   18200 ; 
+    cell_leakage_power : 326307 ;
+
+
+        pg_pin(vpwr)   { 
+          voltage_name : vpwr ;  
+          pg_type : primary_power ;  
+        } 
+
+        pg_pin(vpwre)   { 
+          voltage_name : vpwre ;  
+          pg_type : primary_power ;  
+        } 
+
+        pg_pin(vpb)   { 
+          voltage_name : vpb ;  
+          pg_type : primary_power ;  
+        } 
+
+        pg_pin(vpbe)   { 
+          voltage_name : vpbe ;  
+          pg_type : primary_power ;  
+        }
+ 
+        pg_pin(ng)   { 
+          voltage_name : ng ;  
+          pg_type : primary_power ;  
+        }
+
+        pg_pin(vnb)   { 
+          voltage_name : vnb ;  
+          pg_type : primary_ground ;  
+        } 
+
+        pg_pin(vgnd)   { 
+          voltage_name : vgnd ;  
+          pg_type : primary_ground ;  
+        } 
+
+        pin(nbias)   { 
+          direction : input ; 
+          capacitance : 0.015 ;    
+	  related_power_pin : vpwr;
+	  related_ground_pin : vgnd;
+	  max_transition : 5;
+        } 
+
+        pin(ch1)   { 
+          direction : input ; 
+          capacitance : 0.01 ;    
+	  related_power_pin : vpwr;
+	  related_ground_pin : vgnd;
+	  max_transition : 5;
+        } 
+
+        pin(ch2)   { 
+          direction : input ; 
+          capacitance : 0.01 ;    
+	  related_power_pin : vpwr;
+	  related_ground_pin : vgnd;
+	  max_transition : 5;
+        } 
+
+        pin(ch_cont)   { 
+          direction : input ; 
+          capacitance : 0.01 ;    
+	  related_power_pin : vpwr;
+	  related_ground_pin : vgnd;
+	  max_transition : 5;
+        }
+ 
+        pin(boost)   { 
+          direction : input ; 
+          capacitance : 0.01 ;    
+	  related_power_pin : vpwr;
+	  related_ground_pin : vgnd;
+	  max_transition : 5;
+        }
+ 
+        pin(switchon)   { 
+          direction : input ; 
+          capacitance : 0.01 ;    
+	  related_power_pin : vpwr;
+	  related_ground_pin : vgnd;
+	  max_transition : 5;
+        }
+
+
+        pin(pd)   { 
+          always_on : true ;
+          direction : input ; 
+          capacitance : 0.046 ;    
+	  related_power_pin : vpwre;
+	  related_ground_pin : vgnd;
+	  max_transition : 5;
+        } 
+
+        pin(ref_1v2)   { 
+          direction : input ; 
+          capacitance : 0.02 ;    
+	  related_power_pin : vpwr;
+	  related_ground_pin : vgnd;
+	  max_transition : 5;
+        } 
+
+        pin(out)   { 
+          direction : output ; 
+          max_capacitance : 10 ;    
+	  related_power_pin : vpwr;
+	  related_ground_pin : vgnd;
+	  max_transition : 1.2;
+        } 
+
+        pin(switchoff)   { 
+          direction : output ; 
+          max_capacitance : 0.3 ;   
+	  related_power_pin : vpwr;
+	  related_ground_pin : vgnd;
+	  max_transition : 1.2;
+        } 
+
+    }
+
+}
+
+
