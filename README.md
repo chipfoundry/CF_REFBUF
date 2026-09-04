@@ -53,8 +53,14 @@ package yet.
 
 ## Block Diagram
 
-See the abstract boundary and pins in `layout/lef/CF_REFBUF.lef`. Optional
-figures may be placed under `doc/`.
+Customer documentation includes a pinout of the integration cell only.
+Internal schematics and architecture block diagrams are not published.
+
+![CF_REFBUF pinout](doc/generated/CF_REFBUF_pinout.svg)
+
+Pin names and directions match the public abstract (`layout/lef/CF_REFBUF.lef`)
+and the blackbox stub (`hdl/gl/CF_REFBUF.v`). Glue cells are documented in the
+pin table below; they are not shown on this pinout.
 
 ## Pin Description
 
