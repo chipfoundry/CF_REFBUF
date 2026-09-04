@@ -1,0 +1,88 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 0
+<< metal1 >>
+rect 0 6488 318 6702
+rect 3056 29422 3201 29539
+rect 0 4519 131 4583
+rect 3467 17774 3570 17884
+rect 0 23279 220 23415
+rect 0 388 531 662
+rect 2871 29308 2951 29539
+<< metal2 >>
+rect 11603 28810 12309 29539
+rect 0 18985 390 19094
+rect 0 2804 587 2937
+rect 11059 29296 11160 29539
+rect 3903 29390 4031 29539
+rect 8387 29407 8653 29539
+rect 246 4320 24399 4940
+rect 246 11760 24399 12380
+rect 246 19200 24399 19820
+rect 246 26640 24399 27260
+rect 24410 7418 24645 7611
+rect 7580 29415 7650 29539
+rect 8755 29436 8825 29539
+rect 12666 28871 13443 29539
+rect 2002 29419 2194 29539
+rect 246 600 24399 1220
+rect 246 8040 24399 8660
+rect 246 15480 24399 16100
+rect 246 22920 24399 23540
+<< labels >>
+rlabel metal1 s 0 6488 318 6702 4 nbias
+port 1 nsew
+rlabel metal2 s 11603 28810 12309 29539 4 out
+port 2 nsew
+rlabel metal2 s 0 18985 390 19094 4 switchoff
+port 3 nsew
+rlabel metal2 s 0 2804 587 2937 4 ref_1v2
+port 4 nsew
+rlabel metal2 s 11059 29296 11160 29539 4 vnb
+port 5 nsew
+rlabel metal2 s 3903 29390 4031 29539 4 vpb
+port 6 nsew
+rlabel metal1 s 3056 29422 3201 29539 4 vpbe
+port 7 nsew
+rlabel metal2 s 8387 29407 8653 29539 4 vgnd
+port 8 nsew
+rlabel metal2 s 246 4320 24399 4940 4 vgnd
+port 9 nsew
+rlabel metal2 s 246 11760 24399 12380 4 vgnd
+port 10 nsew
+rlabel metal2 s 246 19200 24399 19820 4 vgnd
+port 11 nsew
+rlabel metal2 s 246 26640 24399 27260 4 vgnd
+port 12 nsew
+rlabel metal1 s 0 4519 131 4583 4 pd
+port 13 nsew
+rlabel metal2 s 24410 7418 24645 7611 4 ng
+port 14 nsew
+rlabel metal1 s 3467 17774 3570 17884 4 switchon
+port 15 nsew
+rlabel metal2 s 7580 29415 7650 29539 4 switchon
+port 16 nsew
+rlabel metal1 s 0 23279 220 23415 4 ch_cont
+port 17 nsew
+rlabel metal2 s 8755 29436 8825 29539 4 boost
+port 18 nsew
+rlabel metal2 s 12666 28871 13443 29539 4 vpwre
+port 19 nsew
+rlabel metal2 s 2002 29419 2194 29539 4 ch2
+port 20 nsew
+rlabel metal1 s 0 388 531 662 4 vpwr
+port 21 nsew
+rlabel metal2 s 246 600 24399 1220 4 vpwr
+port 22 nsew
+rlabel metal2 s 246 8040 24399 8660 4 vpwr
+port 23 nsew
+rlabel metal2 s 246 15480 24399 16100 4 vpwr
+port 24 nsew
+rlabel metal2 s 246 22920 24399 23540 4 vpwr
+port 25 nsew
+rlabel metal1 s 2871 29308 2951 29539 4 ch1
+port 26 nsew
+<< properties >>
+string FIXED_BBOX 0 0 24645 29539
+<< end >>

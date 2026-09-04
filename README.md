@@ -28,19 +28,19 @@ Macro size is 123.225 × 147.695 µm.
 
 ```bash
 pip install cf-ipm
-ipm install CF_REFBUF --version 0.2.0 --include-drafts
+ipm install CF_REFBUF --version 0.2.1 --include-drafts
 ```
 
 Until the marketplace listing is published, install from a local catalog
 override:
 
 ```bash
-ipm install CF_REFBUF --version 0.2.0 --include-drafts --local-file ip/catalog.json
+ipm install CF_REFBUF --version 0.2.1 --include-drafts --local-file ip/catalog.json
 ```
 
-Use `hdl/gl/` as the blackbox, `layout/lef/` for P&R, `layout/gds/` for the
-public abstract, and `timing/lib/` for characterized views that shipped with
-this package.
+Use `hdl/gl/` as the blackbox, `layout/lef/` for P&R, `layout/gds/` and
+`layout/mag/` for the public abstract, and `timing/lib/` for characterized views
+that shipped with this package.
 
 ## Features
 
@@ -109,8 +109,9 @@ With `pd` held low, raising `switchon` charges the load toward `vref`. After
 - Liberty is a leakage / pin-capacitance view (no timing tables).
 - LEF supplies are `USE POWER` / `GROUND` (`vpwr`, `vpwre`, `vpb`, `vpbe`,
   `ng` power; `vgnd`, `vnb` ground).
-- Public abstracts use Sky130 `prBoundary` 235/4 and OBS on blockage
-  datatype 10.
+- Public abstracts use Sky130 `prBoundary` 235/4, OBS on blockage datatype 10,
+  a 2 µm-inset `dnwell` (64/18), fom/poly waffleDrop (`cfom` 22/24, `cp1m`
+  33/24), interior `vpwr`/`vgnd` met2 straps, and a Magic `layout/mag` view.
 
 ## Tapeout History
 
@@ -127,3 +128,4 @@ a run returns.
 | 0.1.0 | 2026-09-04 | First unpublished IPM draft from the chip-wrapper abstract. Four cells. No Liberty. |
 | 0.1.1 | 2026-09-04 | Pin Description table on wrapper pin names. |
 | 0.2.0 | 2026-09-04 | Single public cell: characterized analog core renamed to `CF_REFBUF`. Pinout matches Liberty (`switchon`, `pd`, `ref_1v2`, `ch1`/`ch2`, `boost`). Wrapper and glue cells dropped. Breaking change from 0.1.x. |
+| 0.2.1 | 2026-09-04 | Magic `.mag` abstract, 2 µm dnwell keepout, interior met2 `vpwr`/`vgnd` straps for PDN. |
