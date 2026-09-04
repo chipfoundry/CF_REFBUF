@@ -33,14 +33,14 @@ glue cells are 14.41 × 8.22 µm.
 
 ```bash
 pip install cf-ipm
-ipm install CF_REFBUF --version 0.1.0 --include-drafts
+ipm install CF_REFBUF --version 0.1.1 --include-drafts
 ```
 
 Until the marketplace listing is published, install from a local catalog
 override:
 
 ```bash
-ipm install CF_REFBUF --version 0.1.0 --include-drafts --local-file ip/catalog.json
+ipm install CF_REFBUF --version 0.1.1 --include-drafts --local-file ip/catalog.json
 ```
 
 Use `hdl/gl/` as the blackbox, `layout/lef/` for P&R, and `layout/gds/` for the
@@ -70,39 +70,44 @@ pin table below; they are not shown on this pinout.
 
 ## Pin Description
 
+Directions and widths are taken from the shipped Verilog in `hdl/gl/` and the
+matching LEF. Descriptions are from the packaging extract where they match
+that stub. `bias_out`, `PDB`, and `hys_buf_bar` are on the public abstract
+and were not in the source pin list.
+
 ### `CF_REFBUF` / `CF_REFBUF_kryp`
 
-| Pin | Direction | Width |
-|---|---|---|
-| out | output | 1 |
-| bias_out | output | 1 |
-| switchoff | output | 1 |
-| PD | input | 1 |
-| PDB | input | 1 |
-| swon | input | 1 |
-| hys_buf_bar | input | 1 |
-| nbias | input | 1 |
-| ref1v2 | input | 1 |
-| ng | input | 1 |
-| vpwr | input | 1 |
-| vpwre | input | 1 |
-| vgnd | input | 1 |
-| vpb | input | 1 |
-| vpbe | input | 1 |
-| vnb | input | 1 |
+| Name | Direction | Width | Description |
+|---|---|---:|---|
+| `out` | output | 1 | Tri-statable buffer output onto the load. |
+| `bias_out` | output | 1 | Companion bias output on this abstract. |
+| `switchoff` | output | 1 | Test-mode control output. |
+| `PD` | input | 1 | Power-down, active high. `0` = buffer active; `1` = buffer disabled. |
+| `PDB` | input | 1 | Additional digital control on this abstract. |
+| `swon` | input | 1 | Output switch. `0` = open (disconnected from the load); `1` = closed. |
+| `hys_buf_bar` | input | 1 | Active-low digital control on this abstract. |
+| `nbias` | input | 1 | Bias-current input. Source typical 9.6 µA ±5%. |
+| `ref1v2` | input | 1 | 1.0 V / 1.2 V reference input. |
+| `ng` | input | 1 | Boosted analog supply. |
+| `vpwr` | input | 1 | Core supply, about 1.6–2.0 V. |
+| `vpwre` | input | 1 | External supply, about 1.65–5.5 V. |
+| `vgnd` | input | 1 | Ground. |
+| `vpb` | input | 1 | P-channel bulk. Tie to the core supply. |
+| `vpbe` | input | 1 | HV P-channel bulk. Tie to the external supply. |
+| `vnb` | input | 1 | N-channel / substrate bulk. Tie to ground. |
 
 ### `CF_REFBUF_gluelogic` / `CF_REFBUF_gluelogic_kryp`
 
-| Pin | Direction | Width |
-|---|---|---|
-| swon_hv | input | 1 |
-| switchoff | output | 1 |
-| vnb | input | 1 |
-| vgnd | input | 1 |
-| vpb | input | 1 |
-| vpwr | input | 1 |
-| vpbe | input | 1 |
-| vpwre | input | 1 |
+| Name | Direction | Width | Description |
+|---|---|---:|---|
+| `swon_hv` | input | 1 | HV-side output-switch control. |
+| `switchoff` | output | 1 | Test-mode control output. |
+| `vnb` | input | 1 | N-channel / substrate bulk. Tie to ground. |
+| `vgnd` | input | 1 | Ground. |
+| `vpb` | input | 1 | P-channel bulk. Tie to the core supply. |
+| `vpwr` | input | 1 | Core supply. |
+| `vpbe` | input | 1 | HV P-channel bulk. Tie to the external supply. |
+| `vpwre` | input | 1 | External supply. |
 
 ## Specifications
 
@@ -146,3 +151,4 @@ a run returns.
 | Version | Date | Notes |
 |---|---|---|
 | 0.1.0 | 2026-09-04 | First unpublished IPM draft. Four public cells under `CF_REFBUF*` names. Pinout-only customer docs plus the charging timing figure. LEF supplies are `USE POWER`/`GROUND`. |
+| 0.1.1 | 2026-09-04 | Pin Description table includes extract-backed prose on public LEF names. |
