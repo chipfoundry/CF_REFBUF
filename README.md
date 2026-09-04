@@ -51,7 +51,7 @@ package yet.
 - Boosted analog supply input `ng`
 - Hard-macro size 123.225 × 147.465 µm
 
-## Block Diagram
+## Pinout
 
 Customer documentation includes a pinout of the integration cell only.
 Internal schematics and architecture block diagrams are not published.
