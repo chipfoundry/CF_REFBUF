@@ -5,7 +5,8 @@
 Draft for designer review. The public GDS is an abstract; ChipFoundry
 substitutes protected full geometry at tapeout.
 
-This package ships one hard macro: `CF_REFBUF`.
+This package ships an SRAM-style PG wrap `CF_REFBUF` around analog leaf
+`CF_REFBUF_core`.
 
 ## Overview
 
@@ -22,25 +23,30 @@ Light and medium loads are handled by a correction amplifier. Very heavy loads
 use a strong-drive path enabled by `boost`. Load feedback returns on `ch1` or
 `ch2`; `ch_cont` selects the channel.
 
-Macro size is 123.225 × 147.695 µm.
+Macro size is 153.225 × 177.695 µm (15 µm halo around analog leaf
+123.225 × 147.695 µm). Customer PG for chip PDN is `vpwr` / `vgnd`. Analog
+rails `vpwre` and `ng` stay on the wrap. Well taps are tied inside.
 
 ## Installation
 
 ```bash
 pip install cf-ipm
-ipm install CF_REFBUF --version 0.2.1 --include-drafts
+ipm install CF_REFBUF --version 0.2.2 --include-drafts
 ```
 
 Until the marketplace listing is published, install from a local catalog
 override:
 
 ```bash
-ipm install CF_REFBUF --version 0.2.1 --include-drafts --local-file ip/catalog.json
+ipm install CF_REFBUF --version 0.2.2 --include-drafts --local-file ip/catalog.json
 ```
 
-Use `hdl/gl/` as the blackbox, `layout/lef/` for P&R, `layout/gds/` and
-`layout/mag/` for the public abstract, and `timing/lib/` for characterized views
-that shipped with this package.
+Use `hdl/gl/CF_REFBUF.v` as the customer blackbox, `layout/lef/CF_REFBUF.lef` for
+P&R, and `layout/gds/CF_REFBUF.gds` / `layout/mag/CF_REFBUF.mag` for the public
+wrap. `CF_REFBUF_core` is the analog leaf (empty Verilog, pin-only abstract).
+ChipFoundry substitutes vault GDS into `CF_REFBUF_core` at tapeout. `timing/lib/`
+is the characterized analog view; P&R uses the wrap LEF (`vpwr` / `vgnd` plus
+analog `vpwre` / `ng`).
 
 ## Features
 
@@ -52,7 +58,8 @@ that shipped with this package.
 - Load-feedback channels `ch1` / `ch2` with select `ch_cont`
 - Dual supply: core `vpwr` and external `vpwre`
 - Boosted analog supply input `ng`
-- Hard-macro size 123.225 × 147.695 µm
+- Customer cell `CF_REFBUF` 153.225 × 177.695 µm (15 µm halo around analog leaf 123.225 × 147.695 µm)
+- Chip PDN is `vpwr` / `vgnd`. Well taps `vpb` / `vnb` / `vpbe` are tied inside the wrap.
 
 ## Pinout
 
@@ -61,12 +68,12 @@ Internal schematics and architecture block diagrams are not published.
 
 ![CF_REFBUF pinout](doc/generated/CF_REFBUF_pinout.svg)
 
-Pin names and directions match the public abstract (`layout/lef/CF_REFBUF.lef`),
-the blackbox stub (`hdl/gl/CF_REFBUF.v`), and `timing/lib/CF_REFBUF_*.lib`.
+Pin names and directions match the public wrap (`layout/lef/CF_REFBUF.lef`)
+and the blackbox stub (`hdl/gl/CF_REFBUF.v`).
 
 ## Pin Description
 
-Directions and widths are taken from the shipped Verilog, LEF, and Liberty.
+Directions and widths are taken from the shipped Verilog in `hdl/gl/CF_REFBUF.v`.
 Descriptions are from the packaging extract where they match that stub.
 
 | Name | Direction | Width | Description |
@@ -85,9 +92,15 @@ Descriptions are from the packaging extract where they match that stub.
 | `vpwr` | input | 1 | Core supply, about 1.6–2.0 V. |
 | `vpwre` | input | 1 | External supply, about 1.65–5.5 V. |
 | `vgnd` | input | 1 | Ground. |
-| `vpb` | input | 1 | P-channel bulk. Tie to the core supply. |
-| `vpbe` | input | 1 | HV P-channel bulk. Tie to the external supply. |
-| `vnb` | input | 1 | N-channel / substrate bulk. Tie to ground. |
+
+`CF_REFBUF_core` also has well taps `vpb` (core n-well), `vpbe` (HV n-well), and
+`vnb` (p-substrate). The wrap ties `.vpb(vpwr)`, `.vpbe(vpwre)`, and `.vnb(vgnd)`.
+Do not connect those pins at chip level.
+
+In OpenLane / LibreLane, hook chip PDN with
+`PDN_MACRO_CONNECTIONS: "u_cf_refbuf vccd1 vssd1 vpwr vgnd"` and connect
+`.vpwr(vccd1)`, `.vgnd(vssd1)` under `USE_POWER_PINS`. Route analog `vpwre` and
+`ng` separately. Do not list `vpb` / `vnb` / `vpbe` on the wrapper instance.
 
 ## Specifications
 
@@ -105,13 +118,14 @@ With `pd` held low, raising `switchon` charges the load toward `vref`. After
 
 ## Limitations and Open Issues
 
-- Verilog in `hdl/gl/` is a behavioral blackbox, not a SPICE-accurate model.
-- Liberty is a leakage / pin-capacitance view (no timing tables).
-- LEF supplies are `USE POWER` / `GROUND` (`vpwr`, `vpwre`, `vpb`, `vpbe`,
-  `ng` power; `vgnd`, `vnb` ground).
-- Public abstracts use Sky130 `prBoundary` 235/4, OBS on blockage datatype 10,
-  a 2 µm-inset `dnwell` (64/18), fom/poly waffleDrop (`cfom` 22/24, `cp1m`
-  33/24), interior `vpwr`/`vgnd` met2 straps, and a Magic `layout/mag` view.
+- Verilog in `hdl/gl/CF_REFBUF.v` is a structural wrap around an empty
+  `CF_REFBUF_core` blackbox, not a SPICE-accurate model.
+- Liberty is a leakage / pin-capacitance view (no timing tables). It may still
+  list leaf well taps; P&R uses the wrap LEF.
+- Public wrap uses Sky130 `prBoundary` 235/4, OBS on li1/met1/met2 blockage
+  datatype 10, a 2 µm-inset `dnwell` (64/18), fom/poly waffleDrop, north-halo
+  met3 PG straps, full-height met4 `vpwr`/`vgnd`, and a Magic `layout/mag`
+  view. Analog leaf views are `CF_REFBUF_core`.
 
 ## Tapeout History
 
@@ -129,3 +143,4 @@ a run returns.
 | 0.1.1 | 2026-09-04 | Pin Description table on wrapper pin names. |
 | 0.2.0 | 2026-09-04 | Single public cell: characterized analog core renamed to `CF_REFBUF`. Pinout matches Liberty (`switchon`, `pd`, `ref_1v2`, `ch1`/`ch2`, `boost`). Wrapper and glue cells dropped. Breaking change from 0.1.x. |
 | 0.2.1 | 2026-09-04 | Magic `.mag` abstract, 2 µm dnwell keepout, interior met2 `vpwr`/`vgnd` straps for PDN. |
+| 0.2.2 | 2026-09-05 | SRAM-style PG wrap: analog leaf is `CF_REFBUF_core`; customer `CF_REFBUF` exposes chip PDN `vpwr`/`vgnd` plus analog `vpwre`/`ng`. Well taps tied inside. |

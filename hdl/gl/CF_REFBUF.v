@@ -1,7 +1,5 @@
-// Verilog HDL for "CF_REFBUF", "CF_REFBUF" "behavioral"
-// Blackbox stub for top-level integration. Analog behavior is not modeled.
-// Ports match public abstract MACRO CF_REFBUF and timing/lib/CF_REFBUF_*.lib.
-
+// Structural PG wrapper. Analog leaf is CF_REFBUF_core.
+// Customer rails are vpwr/vgnd; well taps vpb/vnb/vpbe are tied inside.
 module CF_REFBUF (
     out,
     switchoff,
@@ -16,10 +14,7 @@ module CF_REFBUF (
     ng,
     vpwr,
     vpwre,
-    vgnd,
-    vpb,
-    vpbe,
-    vnb
+    vgnd
 );
     output out;
     output switchoff;
@@ -35,11 +30,23 @@ module CF_REFBUF (
     input vpwr;
     input vpwre;
     input vgnd;
-    input vpb;
-    input vpbe;
-    input vnb;
-
-    assign out = ~pd & switchon & vpwr;
-    assign switchoff = 1'b0;
-
+    CF_REFBUF_core u_core (
+        .out(out),
+        .switchoff(switchoff),
+        .pd(pd),
+        .switchon(switchon),
+        .boost(boost),
+        .ch_cont(ch_cont),
+        .ch1(ch1),
+        .ch2(ch2),
+        .ref_1v2(ref_1v2),
+        .nbias(nbias),
+        .ng(ng),
+        .vpwr(vpwr),
+        .vpwre(vpwre),
+        .vgnd(vgnd),
+        .vpb(vpwr),
+        .vpbe(vpwre),
+        .vnb(vgnd)
+    );
 endmodule
