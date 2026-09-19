@@ -31,14 +31,14 @@ rails `vpwre` and `ng` stay on the wrap. Well taps are tied inside.
 
 ```bash
 pip install cf-ipm
-ipm install CF_REFBUF --version 0.2.2 --include-drafts
+ipm install CF_REFBUF --version 0.2.3 --include-drafts
 ```
 
 Until the marketplace listing is published, install from a local catalog
 override:
 
 ```bash
-ipm install CF_REFBUF --version 0.2.2 --include-drafts --local-file ip/catalog.json
+ipm install CF_REFBUF --version 0.2.3 --include-drafts --local-file ip/catalog.json
 ```
 
 Use `hdl/gl/CF_REFBUF.v` as the customer blackbox, `layout/lef/CF_REFBUF.lef` for
@@ -144,3 +144,4 @@ a run returns.
 | 0.2.0 | 2026-09-04 | Single public cell: characterized analog core renamed to `CF_REFBUF`. Pinout matches Liberty (`switchon`, `pd`, `ref_1v2`, `ch1`/`ch2`, `boost`). Wrapper and glue cells dropped. Breaking change from 0.1.x. |
 | 0.2.1 | 2026-09-04 | Magic `.mag` abstract, 2 µm dnwell keepout, interior met2 `vpwr`/`vgnd` straps for PDN. |
 | 0.2.2 | 2026-09-05 | SRAM-style PG wrap: analog leaf is `CF_REFBUF_core`; customer `CF_REFBUF` exposes chip PDN `vpwr`/`vgnd` plus analog `vpwre`/`ng`. Well taps tied inside. |
+| 0.2.3 | 2026-09-18 | Magic-port seed on north-PR `switchon` met2; core GDS label relocated onto that pad so precheck LVS unique-matches `analog_ctrl[105]`. |
