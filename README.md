@@ -31,14 +31,14 @@ rails `vpwre` and `ng` stay on the wrap. Well taps are tied inside.
 
 ```bash
 pip install cf-ipm
-ipm install CF_REFBUF --version 0.2.3 --include-drafts
+ipm install CF_REFBUF --version 0.2.4 --include-drafts
 ```
 
 Until the marketplace listing is published, install from a local catalog
 override:
 
 ```bash
-ipm install CF_REFBUF --version 0.2.3 --include-drafts --local-file ip/catalog.json
+ipm install CF_REFBUF --version 0.2.4 --include-drafts --local-file ip/catalog.json
 ```
 
 Use `hdl/gl/CF_REFBUF.v` as the customer blackbox, `layout/lef/CF_REFBUF.lef` for
@@ -145,3 +145,4 @@ a run returns.
 | 0.2.1 | 2026-09-04 | Magic `.mag` abstract, 2 µm dnwell keepout, interior met2 `vpwr`/`vgnd` straps for PDN. |
 | 0.2.2 | 2026-09-05 | SRAM-style PG wrap: analog leaf is `CF_REFBUF_core`; customer `CF_REFBUF` exposes chip PDN `vpwr`/`vgnd` plus analog `vpwre`/`ng`. Well taps tied inside. |
 | 0.2.3 | 2026-09-18 | Magic-port seed on north-PR `switchon` met2; core GDS label relocated onto that pad so precheck LVS unique-matches `analog_ctrl[105]`. |
+| 0.2.4 | 2026-09-19 | Relocate wrap Magic-port labels onto vendor pads of PR stems. |

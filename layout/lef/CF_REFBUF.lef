@@ -12,7 +12,7 @@ MACRO CF_REFBUF
     USE SIGNAL ;
     PORT
       LAYER met1 ;
-        RECT 0 47.44 16.59 48.51 ;
+        RECT 0 47.39 16.59 48.56 ;
     END
   END nbias
   PIN out
@@ -28,7 +28,7 @@ MACRO CF_REFBUF
     USE SIGNAL ;
     PORT
       LAYER met2 ;
-        RECT 0 109.925 16.95 110.47 ;
+        RECT 0 109.875 16.95 110.52 ;
     END
   END switchoff
   PIN ref_1v2
@@ -36,7 +36,7 @@ MACRO CF_REFBUF
     USE SIGNAL ;
     PORT
       LAYER met2 ;
-        RECT 0 29.02 17.935 29.685 ;
+        RECT 0 28.97 17.935 29.735 ;
     END
   END ref_1v2
   PIN vgnd
@@ -63,7 +63,7 @@ MACRO CF_REFBUF
     USE SIGNAL ;
     PORT
       LAYER met1 ;
-        RECT 0 37.595 15.655 37.915 ;
+        RECT 0 37.545 15.655 37.965 ;
     END
   END pd
   PIN ng
@@ -78,10 +78,10 @@ MACRO CF_REFBUF
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
-      LAYER met1 ;
-        RECT 32.335 103.87 32.85 104.42 ;
       LAYER met2 ;
         RECT 52.9 162.075 53.25 177.695 ;
+      LAYER met1 ;
+        RECT 32.335 103.87 32.85 104.42 ;
     END
   END switchon
   PIN ch_cont
@@ -89,7 +89,7 @@ MACRO CF_REFBUF
     USE SIGNAL ;
     PORT
       LAYER met1 ;
-        RECT 0 131.395 16.1 132.075 ;
+        RECT 0 131.345 16.1 132.125 ;
     END
   END ch_cont
   PIN boost
@@ -107,8 +107,8 @@ MACRO CF_REFBUF
       LAYER met2 ;
         RECT 78.33 159.355 82.215 177.695 ;
       LAYER met1 ;
-        RECT 30.28 162.11 31.005 162.695 ;
         RECT 30.405 162.11 80.515 162.695 ;
+        RECT 30.28 162.11 31.005 162.695 ;
     END
   END vpwre
   PIN ch2
@@ -153,22 +153,22 @@ MACRO CF_REFBUF
     LAYER li1 ;
       RECT 0 0 153.225 177.695 ;
     LAYER met1 ;
-      RECT 0 0 15 37.595 ;
-      RECT 0 37.915 15 47.44 ;
-      RECT 0 48.51 15 131.395 ;
-      RECT 0 132.075 15 177.695 ;
+      RECT 0 0 15 37.545 ;
+      RECT 0 37.965 15 47.39 ;
+      RECT 0 48.56 15 131.345 ;
+      RECT 0 132.125 15 177.695 ;
       RECT 138.225 0 153.225 177.695 ;
       RECT 15 0 138.225 15 ;
       RECT 15 162.695 29.355 177.695 ;
       RECT 29.755 162.695 138.225 177.695 ;
     LAYER met2 ;
-      RECT 0 0 6.31 29.02 ;
-      RECT 0 29.685 6.31 109.925 ;
-      RECT 0 110.47 6.31 177.695 ;
+      RECT 0 0 6.31 28.97 ;
+      RECT 0 29.735 6.31 109.875 ;
+      RECT 0 110.52 6.31 177.695 ;
       RECT 6.31 0 15 16.94 ;
-      RECT 6.31 18.31 15 29.02 ;
-      RECT 6.31 29.685 15 109.925 ;
-      RECT 6.31 110.47 15 177.695 ;
+      RECT 6.31 18.31 15 28.97 ;
+      RECT 6.31 29.735 15 109.875 ;
+      RECT 6.31 110.52 15 177.695 ;
       RECT 138.225 0 153.225 52.09 ;
       RECT 138.225 53.055 153.225 177.695 ;
       RECT 15 0 138.225 15 ;
