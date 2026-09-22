@@ -31,14 +31,14 @@ rails `vpwre` and `ng` stay on the wrap. Well taps are tied inside.
 
 ```bash
 pip install cf-ipm
-ipm install CF_REFBUF --version 0.2.5 --include-drafts
+ipm install CF_REFBUF --version 0.2.6 --include-drafts
 ```
 
 Until the marketplace listing is published, install from a local catalog
 override:
 
 ```bash
-ipm install CF_REFBUF --version 0.2.5 --include-drafts --local-file ip/catalog.json
+ipm install CF_REFBUF --version 0.2.6 --include-drafts --local-file ip/catalog.json
 ```
 
 Use `hdl/gl/CF_REFBUF.v` as the customer blackbox, `layout/lef/CF_REFBUF.lef` for
@@ -148,3 +148,4 @@ a run returns.
 | 0.2.3 | 2026-09-18 | Magic-port seed on north-PR `switchon` met2; core GDS label relocated onto that pad so precheck LVS unique-matches `analog_ctrl[105]`. |
 | 0.2.4 | 2026-09-19 | Relocate wrap Magic-port labels onto vendor pads of PR stems. |
 | 0.2.5 | 2026-09-20 | Ship an ideal `verify/beh_model` core (unity `ref_1v2` → `out`). |
+| 0.2.6 | 2026-09-21 | Core waffleDrop, inset dnwell, li/met1/met2 blockage, and slotted dummy poly/diff for tapeout pd/f1. |
