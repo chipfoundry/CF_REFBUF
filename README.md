@@ -2,8 +2,8 @@
 
 > Precision Reference Buffer
 
-Draft for designer review. The public GDS is an abstract; ChipFoundry
-substitutes protected full geometry at tapeout.
+The public GDS is an abstract; ChipFoundry substitutes protected full
+geometry at tapeout.
 
 This package ships an SRAM-style PG wrap `CF_REFBUF` around analog leaf
 `CF_REFBUF_core`.
@@ -31,14 +31,7 @@ rails `vpwre` and `ng` stay on the wrap. Well taps are tied inside.
 
 ```bash
 pip install cf-ipm
-ipm install CF_REFBUF --version 0.2.7 --include-drafts
-```
-
-Until the marketplace listing is published, install from a local catalog
-override:
-
-```bash
-ipm install CF_REFBUF --version 0.2.7 --include-drafts --local-file ip/catalog.json
+ipm install CF_REFBUF --version 0.2.8
 ```
 
 Use `hdl/gl/CF_REFBUF.v` as the customer blackbox, `layout/lef/CF_REFBUF.lef` for
@@ -150,3 +143,4 @@ a run returns.
 | 0.2.5 | 2026-09-20 | Ship an ideal `verify/beh_model` core (unity `ref_1v2` → `out`). |
 | 0.2.6 | 2026-09-21 | Core waffleDrop, inset dnwell, li/met1/met2 blockage, and slotted dummy poly/diff for tapeout pd/f1. |
 | 0.2.7 | 2026-09-25 | Core `cmm1`/`cmm2` waffleDrop (62/24, 105/52) so fillgen does not overwrite analog. LI fill-block remains `li1.blockage` 67/10. |
+| 0.2.8 | 2026-09-25 | Customer README. Marketplace listing is published. |
